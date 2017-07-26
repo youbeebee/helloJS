@@ -1,0 +1,19 @@
+body {
+    color: #00aa00;
+    font-size: 1.5rem;
+}
+
+.pclass {
+    color: #3333ff;
+}
+
+#pid {
+    color: #ff33ff;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Monaco', monospace; 
+    font-size: 2rem;
+    color: #550055;
+    /*comment*/
+}
