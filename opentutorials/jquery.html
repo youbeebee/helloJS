@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="./jquery.css" rel="stylesheet">
+</head>
+<body>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $('body').prepend('<h1>Hello world</h1>');
+            $('ol li').css('color', 'blue');
+        });
+        
+        var onClick1 = function () {
+            $('ol li').css('color', 'green');
+        }
+        
+        var onClick3 = function () {
+            $('#active').css('color', 'pink').css('textDecoration', 'underline');
+        }
+    </script>
+    
+    <ol id="demo">
+        <li>HTML5</li>
+        <li class="active">CSS3</li>
+        <li id="active">JavaScript</li>
+    </ol>
+    
+    <ul id="execute">
+        <li>
+            <pre>
+var ol = document.getElementsByTagName('ol')[0];
+var lis = ol.getElementsByTagName('li');
+for(var i=0; i&lt;lis.length; i++){
+    lis[i].style.color='red';
+}
+            </pre>
+            <pre>
+$('ol li').css('color', 'red')
+            </pre>
+            <input type="button" value="execute" onclick="onClick1()" />
+        </li>
+        <li>
+            <pre>
+var lis = document.getElementsByClassName('active');
+for(var i=0; i &lt; lis.length; i++){
+    lis[i].style.color='red';   
+}
+            </pre>
+            <pre>
+$('.active').css('color', 'red')
+            </pre>
+            <input type="button" value="execute" onclick="$('.active').css('color', 'red')" />
+        </li>
+        <li>
+            <pre>
+var li = document.getElementById('active');
+li.style.color='red';
+li.style.textDecoration='underline';
+            </pre>
+            <pre>
+$('$active').css('color', 'red').css('textDecoration', 'underline');
+            </pre>
+            <input type="button" value="execute" onclick="onClick3()" />
+        </li>
+    </ul>
+</body>
+</html>
