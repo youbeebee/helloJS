@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <input type="button" id="pure" value="pure" />
+    <input type="button" id="jquery" value="jQuery" />
+
+    <ul>
+        <li><a href="#">HTML</a></li>
+        <li><a href="#">CSS</a></li>
+        <li><a href="#">JavaScript</a></li>
+    </ul>
+
+    <input type="text" id="target" />
+    <p id="status"></p>
+    <p></p>
+    <input type="text" id="target2"></textarea>
+    <input id="remove"  type="button" value="remove" />
+    <p id="status2"></p>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        // 순수하게 구현했을 때
+        var target = document.getElementById('pure');
+        if(target.addEventListener){
+            target.addEventListener('click', function(event){
+                console.log('pure');
+            });
+        } else {//for IE
+            target.attachEvent('onclick', function(event){
+                console.log('pure');
+            });
+        }
+    
+        // jQuery를 사용했을 때
+        $('#jquery').on('click', function(event){
+            console.log('jQuery');
+        })
+
+        //on API 사용법
+        //.on( events [, selector ] [, data ], handler(eventObject) )
+        $('ul').on('click','a, li', function(event){
+            console.log(this.tagName);
+        })
+
+        //다중 이벤트 bind
+        //$('#target').on('focus blur', function(e){
+        //    $('#status').html(e.type);
+        //})
+        //체이닝 지원
+        /*
+        $('#target').on('focus', function(e){
+            $('#status').html(e.type);
+        }).on('blur', function(e){
+            $('#status').html(e.type);
+        })*/
+        //객체 형식으로 넘기는 것도 가능
+        $('#target').on({
+            'focus': function(e){
+                $('#status').html('focus');
+            },
+            'blur': function(e){
+                $('#status').html('blur');
+            }
+        })
+
+        //이벤트 삭제
+        var handler = function(e){
+            $('#status2').text(e.type+' '+Math.random());
+        };
+        $('#target2').on('focus blur', handler)
+        $('#remove').on('click' , function(e){
+            $('#target2').off('focus', handler);
+            //2개 이상의 동일한 이벤트가 등록되어 있을 경우 모두 삭제된다.
+            //handler를 넣어줄 경우 해당 핸들러가 등록된 이벤트만 삭제된다.
+            console.log('remove');
+        })
+    </script>
+</body>
+</html>

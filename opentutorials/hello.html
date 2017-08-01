@@ -23,7 +23,9 @@
         //var lis = document.getElementsByTagName('li');
         var ul = document.getElementsByTagName('ul')[0]; //Tag로 검색
         var lis = ul.getElementsByTagName('li');
+        console.group('length');
         console.log(lis.length);
+        console.groupEnd();
         for (var i = 0; i < lis.length; i++) {
             lis[i].style.color = 'red';
         }

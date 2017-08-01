@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <script>
+        var t = document.getElementById('target');
+        console.log(t); //null, 문서 로딩이 끝나지 않았기 때문.
+
+        //방법2. load 이벤트를 이용한다.
+        //단점 : 모든 리소스가 다운로드된 뒤에 실행되기 때문에 느려질 수 있음.
+        window.addEventListener('load', function(){
+            var t = document.getElementById('target');
+            console.log('방법2', t);
+        })
+        //방법3.DOMContentLoaded 사용
+        //DOM 구성만 끝나면 실행되므로 더 빠르다.
+        window.addEventListener('DOMContentLoaded', function(){
+            var t = document.getElementById('target');
+            console.log('방법3', t);
+        })
+    </script>
+</head>
+<body>
+    <p id="target">Hello</p>
+
+    <script>
+        //방법1. 문서 끝에 위치시킨다.
+        var t = document.getElementById('target');
+        console.log('방법1', t);
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+    <p>
+        <label>Prevent event on</label>
+        <input id="prevent" type="checkbox" name="eventprevent" value="on" />
+    </p>
+    <p>
+        <a id="a1" href="http://youbeebee.net" target="_blank" 
+            onclick="if(document.getElementById('prevent').checked) return false;">inline</a>
+        <a id="a2" href="http://youbeebee.net" target="_blank">property listener</a>
+        <a id="a3" href="http://youbeebee.net" target="_blank">addEventListener</a>
+    </p>
+    <p>
+        <form id="form1" action="http://youbeebee.net" target="_blank"
+            onsubmit="if(document.getElementById('prevent').checked) return false;">
+                <input type="submit" />
+        </form>
+        <form id="form2" action="http://youbeebee.net" target="_blank">
+                <input type="submit" />
+        </form>
+        <form id="form3" action="http://youbeebee.net" target="_blank">
+                <input type="submit" />
+        </form>
+    </p>
+    <script>
+        //onclick에서 false를 반환하면 기본 동작을 취소시킬 수 있다.
+        document.getElementById('a2').onclick = function(event){
+            if(document.getElementById('prevent').checked)
+                return false;
+        };
+        
+        document.getElementById('form2').onclick = function(event){
+            if(document.getElementById('prevent').checked)
+                return false;
+        };
+
+        //addEventListener에서는 event.preventDefault()로 기본 동작을 취소시킬 수 있다.
+        document.getElementById('a3').addEventListener('click', function(event){
+            if(document.getElementById('prevent').checked)
+                event.preventDefault();
+        });
+        
+        document.getElementById('form3').addEventListener('click', function(event){
+            if(document.getElementById('prevent').checked)
+                event.preventDefault();
+        });
+    </script>
+</body>
+</html>

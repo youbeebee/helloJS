@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        html{border:3px solid red;padding:20px;}
+        body{border:3px solid green;padding:20px;}
+        fieldset{border:3px solid blue;padding:20px;}
+        input{border:3px solid black;padding:20px;}
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>event propagation</legend>
+        <input type="button" id="target" value="target">          
+    </fieldset>
+    <script>
+        /* 캡쳐링 : 부모에서 자식 순서로 이벤트가 전달
+           버블링 : 자식에서 부모 순서로 이벤트가 전달 */
+        function handler(event){
+            var phases = ['capturing', 'target', 'bubbling']
+            console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase-1]);
+        }
+
+        function stophandler(event){
+            var phases = ['capturing', 'target', 'bubbling']
+            console.log(event.target.nodeName, this.nodeName, phases[event.eventPhase-1]);
+            event.stopPropagation(); //이벤트 전파를 중단
+        }
+
+        //캡쳐링(IE 낮은 버전에서 작동 안함, 많이 쓰이지 않음)
+        /*document.getElementById('target').addEventListener('click', handler, true);
+        document.querySelector('fieldset').addEventListener('click', handler, true);
+        document.querySelector('body').addEventListener('click', handler, true);
+        document.querySelector('html').addEventListener('click', handler, true);
+        */
+        //버블링 : 세번째 인자를 false 또는 생략
+        document.getElementById('target').addEventListener('click', handler, false);
+        document.querySelector('fieldset').addEventListener('click', stophandler, false);
+        document.querySelector('body').addEventListener('click', handler, false);
+        document.querySelector('html').addEventListener('click', handler, false);
+    </script>
+</body>
+</html>
