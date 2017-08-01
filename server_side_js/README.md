@@ -16,3 +16,14 @@ Node.js 홈페이지(<https://nodejs.org/ko/>)에서 리눅스용 설치 cmd 확
 
 ## 실행
     node [파일명]
+
+## NPM
+Node Package Manager의 약자. Node의 모듈을 모아놓은 시스템.
+
+<http://npmjs.com>
+
+    //npm 패키지 만들기
+    npm init
+
+    //모듈 설치 (g: 전역으로 설치, save: dependency에 포함)
+    npm install 모듈명 [-g] [--save]
