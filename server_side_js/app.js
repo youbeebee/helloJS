@@ -1,5 +1,6 @@
 //Express JS 사용
 const express = require('express');
+const bodyParser = require('body-parser');
 var app = express();
 
 //템플릿 엔진으로 jade를 사용
@@ -9,6 +10,7 @@ app.set('views', './views');
 
 //public 폴더 밑에 static파일을 넣음. http://localhost:3000/sierra.jpg 로 확인
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello homepage</h1>');
@@ -61,6 +63,20 @@ app.get('/topic', (req, res) => {
 app.get('/topic/:id/:mode', (req, res) => {
     res.send(req.params.id+','+req.params.mode)
 });
+//
+app.get('/form', (req, res) => {
+    res.render('form');
+});
+app.get('/form_receiver', (req, res) => {
+    var title = req.query.title;
+    var description = req.query.description;
+    res.send(title+' '+description);
+});
+app.post('/form_receiver', (req, res) => {
+    var title = req.body.title; //body-parser 모듈 설치 필요
+    var description = req.body.description;
+    res.send('post : '+title+' '+description);
+});
 
 app.listen(3000, () => {
     console.log('Connect 3000 port!');
@@ -74,3 +90,4 @@ app.listen(3000, () => {
 //http://localhost:3000/template    //jade를 사용한 템플릿 페이지
 //http://localhost:3000/topic?id=0
 //http://localhost:3000/topic/1/edit
+//http://localhost:3000/form

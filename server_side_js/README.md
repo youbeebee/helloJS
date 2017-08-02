@@ -17,6 +17,14 @@ Node.js 홈페이지(<https://nodejs.org/ko/>)에서 리눅스용 설치 cmd 확
 ## 실행
     node [파일명]
 
+### 소스코드가 변경되었을 때 자동으로 node 재실행하기
+supervisor 모듈을 사용
+
+    //설치
+    sudo npm install supervisor -g
+    //supervisor로 실행
+    supervisor app.js
+
 ## NPM
 Node Package Manager의 약자. Node의 모듈을 모아놓은 시스템.
 
@@ -61,3 +69,11 @@ URL을 의미적으로 보기 쉬운 방식으로 나타내줌(Restful api 참�
     app.get('/topic/:id/:mode', (req, res) => {\
         res.send(req.params.id+','+req.params.mode)\
     });
+
+## GET vs POST
+get : query string으로 전달, 길이 제한 존재
+post : url상으로 드러나지 않음(헤더에 포함됨), 길이 제한 없음
+
+post 방식을 처리하려면 body parser 모듈 설치 필요
+
+    npm install body-parser --save
