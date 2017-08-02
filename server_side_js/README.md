@@ -77,3 +77,8 @@ post : url상으로 드러나지 않음(헤더에 포함됨), 길이 제한 없�
 post 방식을 처리하려면 body parser 모듈 설치 필요
 
     npm install body-parser --save
+
+## 파일 업로드
+express는 기본적으로 파일 업로드 기능을 지원하지 않으므로 multer 패키지를 설치한다.
+
+    npm install multer --save
