@@ -1,0 +1,13 @@
+//들여쓰기은 포함 관계
+//각 줄의 첫 단어가 tag가 된다.
+//화면에 포함되지 않는 내용은 -를 붙인다.
+//js 변수는 =를 붙인다. (res.render에서 객체로 전달)
+html
+    head
+        title= title
+    body
+        h1 Hello Jade
+        ul
+            -for(var i = 0; i < 5; i++)
+                li coding
+        div= time

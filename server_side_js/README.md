@@ -35,3 +35,12 @@ Node.js로 만든 프레임워크
 
     //Express 설치
     npm install express --save
+
+## Jade
+Express에서 권장하는 템플릿 엔진. 쉽게 html코드를 만들 수 있는 생성기
+
+    //Jade 설치
+    npm install jade --save
+    //Express에서 사용
+    app.set('view engine', 'jade');
+    app.set('views', './views'); //jade 파일을 넣을 디렉토리. 생략해도 views를 기본값으로 한다.
