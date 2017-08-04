@@ -82,3 +82,53 @@ post 방식을 처리하려면 body parser 모듈 설치 필요
 express는 기본적으로 파일 업로드 기능을 지원하지 않으므로 multer 패키지를 설치한다.
 
     npm install multer --save
+
+## DB
+### MySQL
+대표적인 오픈소스 관계형 데이터베이스. 웹앱 제작의 APM(Apache, PHP, MySQL) 중 하나.
+
+    //리눅스에서 설치(버전은 적당히)
+    sudo apt-get install mysql-server-5.7 mysql-client-5.7
+    //설치 확인
+    mysql -uroot -p
+
+    //DB 확인
+    mysql>show databases;
+    //DB 생성
+    mysql>CREATE DATABASE db_name CHARACTER SET utf8 COLLATE utf8_general_ci;
+    //DB 선택
+    mysql>use db_name;
+    //테이블 생성
+    CREATE TABLE `topic` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `title` varchar(100) NOT NULL,
+        `desc` text NOT NULL,
+        `author` varchar(30) NOT NULL,
+        PRIMARY KEY (id)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    //테이블 확인
+    mysql>show tables;
+    //데이터 삽입
+    INSERT INTO topic (title, desc, author) VALUES('JS','description', 'me');
+
+### MySQL with Node
+JavaScript로 MySQL을 제어하는 법
+
+    //node-mysql 모듈 설치
+    npm install --save node-mysql
+
+    //사용법
+    var mysql = require('mysql');
+    var conn = mysql.createConnection({
+        host : 'localhost',
+        user : 'root',
+        password : 'password',
+        database : 'db_name'
+    }); //실제로는 다른 파일로 빼고 버전관리, 공유에서 제외시켜야
+    conn.connect();
+    var SQL = 'INSERT INTO topic ('title', 'desc', 'author') VALUES(?, ?, ?)';
+    var params = ['titles', 'description', 'me']; //변수 처리법
+    conn.query(SQL, params, (err, rows, fields) => {
+        //callback
+    });
+    conn.end();
