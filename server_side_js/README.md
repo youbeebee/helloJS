@@ -160,4 +160,3 @@ express의 세션은 기본적으로 서버의 메모리에 저장되어 있기 
 ### Session store to MySQL
 
     npm install express-mysql-session --save
-
