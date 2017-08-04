@@ -174,3 +174,10 @@ hash 함수의 dictionary 공격을 막기 위해 salt를 사용한다.
 이를 자동화하기 위한 방법으로 pbkdf2가 있다.
 
     npm install pbkdf2-password --save
+
+## 인증
+Federation Authentication : 타사 인증(페이스북, 트위터 등으로 인증)  
+passportjs 모듈로 여러 인증방식을 통합시킬 수 있다.
+
+    //local : id/pwd 인증
+    npm install passport passport-local --save
