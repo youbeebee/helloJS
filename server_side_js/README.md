@@ -132,3 +132,32 @@ JavaScript로 MySQL을 제어하는 법
         //callback
     });
     conn.end();
+
+## Cookie
+http는 상태가 없는 프로토콜. 이를 보완하기 위해 웹사이트에 접속할 때 상태를 저장할 수 있도록 넷스케이프에서 구현한 기술. 세션, 인증 등에도 사용된다.  
+express는 기본적으로 쿠키 기능을 가지고 있지 않기 때문에 모듈을 설치해야 한다.
+
+    npm install cookie-parser --save
+
+### 쿠키의 보안
+쿠키는 평문으로 전송하면 탈취 등에 취약하므로 https를 설정하거나 key를 통해 암호화해야한다.  
+단, 암호화를 하더라도 로그인 정보를 쿠키에 저장하는 것을 취약하므로 session을 사용해야 한다.
+
+## Session
+웹브라우저와 서버가 공유하는 사용자의 식별자. 값이 같으면 같은 사용자로 간주할 수 있다.  
+세션id 자체는 의미있는 값이 아니고 사용자의 컴퓨터에 쿠키가 저장되지 않기 때문에 더 안전하다.  
+express에 세션 기능을 추가하기 위해서는 패키지 설치가 필요하다.
+
+    npm install express-session --save
+
+express의 세션은 기본적으로 서버의 메모리에 저장되어 있기 때문에 재시작하면 초기화된다.  
+따라서 DB 등에 저장하는 것이 필요하다.
+
+### Session store to file
+
+    npm install session-file-store --save
+
+### Session store to MySQL
+
+    npm install express-mysql-session --save
+
