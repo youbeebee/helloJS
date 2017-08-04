@@ -71,7 +71,7 @@ URL을 의미적으로 보기 쉬운 방식으로 나타내줌(Restful api 참�
     });
 
 ## GET vs POST
-get : query string으로 전달, 길이 제한 존재
+get : query string으로 전달, 길이 제한 존재  
 post : url상으로 드러나지 않음(헤더에 포함됨), 길이 제한 없음
 
 post 방식을 처리하려면 body parser 모듈 설치 필요
@@ -160,3 +160,17 @@ express의 세션은 기본적으로 서버의 메모리에 저장되어 있기 
 ### Session store to MySQL
 
     npm install express-mysql-session --save
+
+## 비밀번호 보안
+유저 비밀번호는 단방향 해시를 거쳐 저장을 시켜야 한다.  
+여기서는 md5를 이용해 암호화한다.(단, 실서비스에서 md5는 보안성이 없음)
+
+    npm install md5 --save
+    npm install sha256 --save
+
+hash 함수의 dictionary 공격을 막기 위해 salt를 사용한다.  
+사용자별로 다른 salt값을 사용하는 것이 권장된다.  
+
+이를 자동화하기 위한 방법으로 pbkdf2가 있다.
+
+    npm install pbkdf2-password --save
