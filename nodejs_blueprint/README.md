@@ -44,3 +44,8 @@ npm install
 DEBUG=ch01:* npm start
 ~~~
 `npm start`와 `node app.js`와의 차이점 : npm start는 package.json의 start 스크립트를 실행한다. 현 프로젝트는 `node ./bin/www`가 실행되도록 설정되어 있다.
+
+### ejs
+<http://ejs.co/>
+뷰 템플릿 엔진의 하나. 임베디드 자바스크립트의 약자.  
+`<% include %>`태그로 애플리케이션에 포함시킨다.
