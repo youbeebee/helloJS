@@ -1,0 +1,28 @@
+{
+  "name": "ch01",
+  "description": "MVC 디자인 패턴을 이용한 트위터 스타일 애플리케이션 만들기",
+  "license": "MIT",
+  "author": {
+    "name": "UBB",
+    "url": "https://github.com/youbeebee/helloJS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/youbeebee/helloJS.git"
+  },
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "ejs": "~2.5.6",
+    "express": "~4.15.2",
+    "morgan": "~1.8.1",
+    "node-sass-middleware": "0.9.8",
+    "serve-favicon": "~2.4.2"
+  }
+}
