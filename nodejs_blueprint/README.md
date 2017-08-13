@@ -74,6 +74,18 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 ~~~
 
+버전 확인
+~~~
+mongod -version
+~~~
+
+시작/재시작/정지
+~~~
+service mongod start
+service mongod restart
+service mongod stop
+~~~
+
 ### 기타 미들웨어 설치
 | 컴포넌트 | 설명 | 정보 |
 | --- | ---| --- |
