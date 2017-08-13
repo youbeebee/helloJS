@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const passport = require('passport');
-const gravator = require('gravatar');
+const gravatar = require('gravatar');
 
 /* GET 홈(인덱스) 페이지 */
 router.get('/', (req, res, next) => {

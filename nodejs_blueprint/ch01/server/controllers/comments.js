@@ -5,7 +5,7 @@ const Comments = require('../models/comments');
 // 코멘트 목록
 exports.list = (req, res) => {
     //날짜별 정렬
-    Comment.find().sort('-created').populate('user', 'local.email').exec((error, comments) => {
+    Comments.find().sort('-created').populate('user', 'local.email').exec((error, comments) => {
         if (error) {
             return res.send(400, {
                 message: error
@@ -39,7 +39,8 @@ exports.create = (req, res) => {
 
 //코멘트 인증 미들웨어
 exports.hasAuthorization = (req, res, next) => {
-    if (req.isAuthenticated())
-        return next;
+    if (req.isAuthenticated()) {
+        return next();
+    }
     res.redirect('/login');
 };

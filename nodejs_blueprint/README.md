@@ -52,6 +52,7 @@ DEBUG=ch01:* npm start
 
 ### Twitter Bootstrap
 <http://getbootstrap.com/>  
+v3.2 한글 설명 : <http://bootstrapk.com/>  
 트위터에서 만든 UI 툴킷이며 CSS 프레임워크. 반응형 웹, 크로스 브라우징을 지원한다.
 
 기본적으로 화면의 width를 12등분하여 화면의 크기에 따라 레이아웃을 어떻게 표현할지 분류한다.
