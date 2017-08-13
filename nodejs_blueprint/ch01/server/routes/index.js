@@ -6,7 +6,7 @@ const gravator = require('gravatar');
 
 /* GET 홈(인덱스) 페이지 */
 router.get('/', (req, res, next) => {
-    res.render('index', { title: 'Express from ./server/' });
+    res.render('index', { title: 'Express from server dir' });
 });
 
 /* GET 로그인 페이지 */

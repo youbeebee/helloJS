@@ -8,6 +8,7 @@ const sassMiddleware = require('node-sass-middleware');
 
 const index = require('./server/routes/index');
 const users = require('./server/routes/users');
+const comments = require('./server/controllers/comments'); //코멘트 컨트롤러 불러오기
 
 const mongoose = require('mongoose'); // 몽구스 ODM
 const session = require('express-session'); // 세션 저장용 모듈
@@ -61,6 +62,10 @@ app.use(flash()); // 플래시 메시지
 
 app.use('/', index);
 app.use('/users', users);
+
+// 코멘트를 위한 라우트 설정
+app.get('/comments', comments.hasAuthorization, comments.list);
+app.post('/comments', comments.hasAuthorization, comments.create);
 
 // 404 에러가 잡히면 에러 핸들러에 전송
 app.use((req, res, next) => {
