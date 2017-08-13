@@ -9,11 +9,27 @@ const sassMiddleware = require('node-sass-middleware');
 const index = require('./server/routes/index');
 const users = require('./server/routes/users');
 
+const mongoose = require('mongoose'); // 몽구스 ODM
+const session = require('express-session'); // 세션 저장용 모듈
+const MongoStore = require('connect-mongo')(session);
+const passport = require('passport');
+const flash = require('connect-flash');
+
 const app = express();
 
 // 뷰 엔진 설정
 app.set('views', path.join(__dirname, 'server/views/pages'));
 app.set('view engine', 'ejs');
+
+// DB 설정
+let config = require('./server/config/config.js');
+mongoose.connect(config.url); // DB 연결
+// 몽고DB가 실행 중인지 체크
+mongoose.connection.on('error', () => {
+    console.error('MongoDB Connection Error. Make sure MongoDB is running.');
+});
+// 패스포트 설정
+require('./server/config/passport')(passport);
 
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
@@ -27,6 +43,21 @@ app.use(sassMiddleware({
     sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 패스포트용 세션 비밀키
+app.use(session({
+    secret: 'sometextgohere',
+    saveUninitialized: true,
+    resave: true,
+    // express-session과 connect-mongo를 이용해 몽고DB에 세션 저장
+    store: new MongoStore({
+        url: config.url,
+        collection: 'sessions'
+    })
+}));
+app.use(passport.initialize()); // 패스포트 인증 초기화
+app.use(passport.session()); // 영구적인 로그인 세션
+app.use(flash()); // 플래시 메시지
 
 app.use('/', index);
 app.use('/users', users);
