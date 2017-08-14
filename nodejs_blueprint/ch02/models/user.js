@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // 관계 정의는 여기서 한다.
+        User.hasMany(models.Band);
       }
     }
   });
