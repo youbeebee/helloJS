@@ -49,3 +49,11 @@ npm install sequelize --save
 sequelize init
 ~~~
 애플리케이션 스키마를 저장할 모델 디렉터리, 설정 파일, 시더와 마이그레이션 스크립트를 담을 폴더를 생성한다.
+
+`config.json`에서 mysql 접속 정보를 수정한다.  
+아래 명령어를 통해 사용자를 위한 간단한 스키마를 생성한다.
+~~~
+sequelize model:create --name User --attributes "name:string, email:string"
+~~~
+models/user.js파일이 생성되고, migrations 폴더에는 고유한 해시 값과 DB에 실행될 동작이 포함된 이름의 마이그레이션 파일이 생성된다.
+이 마이그레이션 파일에는 DB에 User 테이블을 생성할 때 필요한 보일러플레이트 코드가 들어있다. 
