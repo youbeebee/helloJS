@@ -93,4 +93,11 @@ sequelize db:migrate
 mysql> show databases;
 mysql> use mvc_mysql_app;
 mysql> show tables;
+mysql> explain table_name;
+mysql> select * from table_name;
+~~~
+
+SQL 파일 임포트
+~~~
+mysql -uroot -proot mvc_mysql_app < insertdata.sql
 ~~~

@@ -1,4 +1,4 @@
-const models = require('./models/index');
+const models = require('../models/index');
 const User = require('../models/user');
 
 // User 만들기

@@ -1,4 +1,4 @@
-const models = require('./models/index');
+const models = require('../models/index');
 const Band = require('../models/band');
 
 // Band 만들기
@@ -12,9 +12,10 @@ exports.create = (req, res) => {
 
 // Band 목록
 exports.list = (req, res) => {
+    console.log('band.list');
     models.Band.findAll({
-        // 최근 생성된 순으로 정렬
-        order: 'createdAt DESC'
+        // 최근 생성된 순으로 정렬 예제대로 하면 에러남, 배열로 감싸야
+        order: [['createdAt', 'DESC']]
     }).then((bands) => {
         //res.json(bands);
         res.render('band-list', {
