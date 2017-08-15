@@ -28,6 +28,7 @@ sudo npm install -g express-generator
 
 ## Ch01. MVC 디자인 패턴을 이용한 트위터 스타일 애플리케이션 만들기
 * 사용기술
+  * MVC 패턴
   * ejs
   * Bootstrap
   * MondoDB
@@ -44,3 +45,10 @@ sudo npm install -g express-generator
 | passport-local | 로컬유저/패스워드 인증 | <https://www.npmjs.com/package/passport-local> |
 
 ## Ch02. MySQL 데이터베이스를 이용한 기본 웹사이트 만들기
+* 사용기술
+  * MySQL
+  * sequelize-cli
+  * Swig 템플릿 엔진
+
+## Ch03. 멀티미디어 애플리케이션 구축하기
+
