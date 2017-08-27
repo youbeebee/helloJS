@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 // 멀터 불러오기
 const multer = require('multer');
-const upload = require({dest: './public/uploads/', limits: {fileSize: 1000000, files: 1}});
+const upload = multer({dest: './public/uploads/', limits: {fileSize: 1000000, files: 1}});
 
 // 홈 컨트롤러 불러오기
 const index = require('./server/controllers/index');
