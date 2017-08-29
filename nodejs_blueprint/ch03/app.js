@@ -144,7 +144,7 @@ app.use((err, req, res, next) => {
 
 module.exports = app;
 
-app.set('part', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 let server = app.listen(app.get('port'), () => {
     console.log('Express server listening on port ' + server.address().port);
 });
