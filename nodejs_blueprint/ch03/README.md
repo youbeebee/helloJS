@@ -9,3 +9,9 @@ express --git
 DEBUG=ch03:* npm start
 ~~~
 
+mongoDB 실행
+~~~
+service mongod start
+~~~
+
+사용자 : John Doe, jogn@doe.com, 123

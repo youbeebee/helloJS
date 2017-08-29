@@ -114,7 +114,7 @@ app.post('/videos', videos.hasAuthorization, upload.single('video'), videos.uplo
 
 // 이미지 라우트 설정
 app.post('/images', images.hasAuthorization, upload.single('image'), images.uploadImage);
-app.get('/images-gallery', images.hasAuthorization, images.show);
+app.get('/image-gallery', images.hasAuthorization, images.show);
 
 // 404 에러가 발생하면 에러 핸들러에 전송
 app.use((req, res, next) => {
