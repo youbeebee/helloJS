@@ -1,15 +1,27 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="/css/style.css">
-  {% if ENV_DEVELOPMENT %}
-    <script src="http://localhost:35729/livereload.js"></script>
-  {% endif %}
-</head>
+{% include "../partials/head.html" %}
 <body>
+  <nav class="teal" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo">Loco</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/locations">Locations</a></li>
+        <li><a href="/locations/add">Add Locations</a></li>
+        <li><a href="/stores">Stores</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
+        <li><a href="/locations">Locations</a></li>
+        <li><a href="/locations/add">Add Locations</a></li>
+        <li><a href="/stores">Stores</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
   {% block content %}{% endblock %}
+  <!-- Footer -->
+  {% include "../partials/footer.html" %}
 </body>
 </html>

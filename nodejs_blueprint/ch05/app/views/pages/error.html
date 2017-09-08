@@ -1,7 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  <h1>{{ message }}</h1>
-  <h2>{{ error.status }}</h2>
-  <pre>{{ error.stack }}</pre>
+<div class="section">
+  <div class="container">
+    <br>
+    <h1 class="header center teal-text">{{ message }}</h1>
+    <div class="row center">
+        <h2 class="header col s12 light">{{ error.status }}</h2>
+    </div>
+    <div class="row center">
+        <pre>{{ error.stack }}</pre>
+    </div>
+    <br><br>
+  </div>
+</div>
 {% endblock %}
