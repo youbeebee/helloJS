@@ -6,7 +6,8 @@ function getCurrentPosition() {
             timeout: Infinity,
             maximumAge: 0
         };
-        navigator.geolocation.watchPosition(getUserPosition, trackError, options);
+        //navigator.geolocation.watchPosition(getUserPosition, trackError, options); // 깜빡임 발생
+        navigator.geolocation.getCurrentPosition(getUserPosition, trackError, options);
     } else {
         alert("Geolocation이 지원되지 않습니다.");
     }

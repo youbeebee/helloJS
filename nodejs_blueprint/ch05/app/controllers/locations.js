@@ -14,15 +14,15 @@ router.get('/locations', (req, res, next) => {
         res.render('locations', {
             title: 'Locations',
             location: item,
-            lat: -23.43221,
-            long: -46.23534
+            lat: 37,
+            long: 132
         });
         //res.status(200).json(stores);
     });
 });
 
 // 위치 추가 폼을 렌더링한다
-router.get('locations/add', (req, res, next) => {
+router.get('/locations/add', (req, res, next) => {
     res.render('add-location', {
         title: 'Insert Locations',
     });
