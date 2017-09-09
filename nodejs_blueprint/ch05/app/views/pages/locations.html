@@ -8,7 +8,15 @@
             <h5 class="header col s12 light">Welcome to {{ title }}</h5>
         </div>
         <div class="row">
-            <div class="col s12">
+            <div class="col s3">
+                <div id="store-list" class="collection">
+                    {% for item in location%}
+                    <a href="#" class="pan-to-marker collection-item" data-marker-index="{{loop.index}}">{{item.title}}</a>
+                    {% endfor %}
+                </div>
+                <div class="col s3"></div>
+            </div>
+            <div class="col s9">
                 <form action="/nearme" method="POST">
                     <div class="row">
                         <div class="col s12" id="map" style="height:600px; width: 100%; margin-bottom:20px"></div>
@@ -61,18 +69,21 @@ let loadMap = () => {
     // 지도에 있는 모든 마커 유지 위해 마커 배열 만들기
     let markers = [];
     // location 변수에서 모든 데이터 얻기 위해 스위그 루프 사용
+    let latLng;
+    let marker;
+    let infowindow;
     {% for item in location %}
     // lat long 객체 설정
-    let latLng = new google.maps.LatLng({{ item.coordinates[1] }}, {{ item.coordinates[0] }});
+    latLng = new google.maps.LatLng({{ item.coordinates[1] }}, {{ item.coordinates[0] }});
     // 마커 만들기
-    let marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         map: googleMap,
         position: latLng,
         animation: google.maps.Animation.DROP
     });
     markers.push(marker);
     // 정보창 설정
-    let infowindow = new google.maps.InfoWindow();
+    infowindow = new google.maps.InfoWindow();
     // 마커를 클릭하면 정보창을 보여주는 이벤트 리스너 추가
     google.maps.event.addListener(marker, 'click', () => {
         // 스위그 루프로부터 제목을 얻어 사용
@@ -80,6 +91,23 @@ let loadMap = () => {
         infowindow.open(googleMap, this);
     });
     {% endfor %}
+    // pan-to-marker 클래스 얻기
+    let els = document.querySelectorAll(".pan-to-marker");
+    // 목록 요소 루프 돌기
+    for (var i = 0, len = els.length; i < len; i++) {
+        els[i].addEventListener("click", function(e) {
+            e.preventDefault();
+            // 스위그의 loop.index가 1부터 시작하므로 -1을 붙임
+            let attr = this.getAttribute('data-marker-index') - 1;
+            // 마커의 경도와 위도 얻기
+            let latitude = markers[attr].getPosition().lat();
+            let longitude = markers[attr].getPosition().lng();
+            console.log(latitude, longitude);
+            // 지도의 중앙으로 가서 줌 적용하기
+            googleMap.setCenter({lat: latitude, lng: longitude});
+            googleMap.setZoom(18);
+        });
+    }
 };
 // 함수 로딩
 window.onload = loadMap;
