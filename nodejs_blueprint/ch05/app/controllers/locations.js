@@ -50,3 +50,38 @@ router.post('/locations', (req, res, next) => {
         });
     });
 });
+
+router.post('/nearme', (req, res, next) => {
+    // 최대 표시할 레코드의 수 설정
+    let limit = req.body.limit || 10;
+    // 기본 최장 거리는 10km
+    let maxDistance = req.body.distance || 10;
+    // coords 객체 설정 [<long>, <lat>]
+    let coords = [];
+    coords[0] = req.body.longitude;
+    coords[1] = req.body.latitude;
+
+    // 위치 찾기
+    Location.find({
+        'coordinates': {
+            $near: {
+                $geometry: {
+                    type: "Point",
+                    coordinates: coords
+                },
+                // 반지름
+                $maxDistance: maxDistance * 1609.34
+            }
+        }
+    }).limit(limit).exec((err, stores) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.render('locations', {
+            title: 'Locations',
+            location: stores,
+            lat: -23.54312,
+            long: -46.642748
+        });
+    });
+});
